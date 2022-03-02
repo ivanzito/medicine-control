@@ -1,0 +1,13 @@
+
+
+<div *ngFor="let medicine of medicines">
+    <h3>{{medicine.name}}</h3>
+    Valor pago: <input [(ngModel)]="medicine.amountPaid" /><br/>
+    Dosagem: <input type="text" [(ngModel)]="medicine.dosage" /><br/>
+    Qtde caixa: <input type="text" [(ngModel)]="medicine.boxQuantity" /><br/>
+
+    Inicio tratamento <input type="text" [(ngModel)]="medicine.startTreatment" /><br/>
+    Fim tratamento <input type="text" [(ngModel)]="medicine.endTreatment" /><br/>
+
+    <input type="button" value="Medicar-se" />
+</div>

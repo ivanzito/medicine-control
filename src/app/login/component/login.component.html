@@ -1,0 +1,7 @@
+<p>Medicine Control</p>
+
+<form [formGroup]="formLogin" (ngSubmit) = "onSubmit()">
+    <input type="text" formControlName="name"/><br/>
+    <input type="text" formControlName="pwd"/><br/>
+    <button type="submit" [disabled]="formLogin.invalid">Login</button>
+</form>
