@@ -2,6 +2,13 @@
 
 <form [formGroup]="formLogin" (ngSubmit) = "onSubmit()">
     <input type="text" formControlName="name"/><br/>
-    <input type="text" formControlName="pwd"/><br/>
+    <div *ngIf="name?.errors?.['pattern']">
+        São permitidos somente letras.
+    </div>
+    
+    <input type="text" minlength="6" formControlName="pwd"/><br/>
+    <div *ngIf="pwd?.errors?.['minLength']">
+        A senha deve ter ao mínimo 6 caracteres
+    </div>
     <button type="submit" [disabled]="formLogin.invalid">Login</button>
 </form>

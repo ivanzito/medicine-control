@@ -1,5 +1,7 @@
 import { Medicine } from './../model/medicine';
 import { Component, Input, OnInit } from '@angular/core';
+import { Treatment } from '../model/treatment';
+import { RangeTreatment } from '../model/rangeTreatment';
 
 
 @Component({
@@ -9,12 +11,29 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MedicineComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   @Input()
-  medicines?:Medicine[] = [new Medicine("Dipirona", "dosage", 3, 23.2, new Date(), new Date())];
+  medicines?:Medicine[] = [
+    new Medicine(
+      "Dipirona", 
+      "3ml", 
+      1, 
+      23.2, 
+      new Treatment(
+        new Date(), 
+        new Date(),
+        RangeTreatment.EACH_8_HOURS
+      )
+    )
+  ]
+
+  range = RangeTreatment;
 
   ngOnInit(): void {
+
   }
 
 }

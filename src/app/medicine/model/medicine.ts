@@ -1,3 +1,4 @@
+import { Treatment } from "./treatment"
 
 
 export class Medicine {
@@ -5,22 +6,17 @@ export class Medicine {
     dosage: string
     boxQuantity:number
     amountPaid:number
-    startTreatment:Date
-    endTreatment:Date
+    private _treatment:Treatment
 
-    constructor(name: string, dosage: string, boxQuantity:number, amountPaid:number, startTreatment:Date, endTreatment:Date){
+    constructor(name: string, dosage: string, boxQuantity:number, amountPaid:number, treatment:Treatment) {
         this.name = name
         this.dosage = dosage
         this.boxQuantity = boxQuantity
         this.amountPaid = amountPaid
-        this.startTreatment = startTreatment
-        this.endTreatment = endTreatment
+        this._treatment = treatment
     }
 
-    startTreatmentFormatted(): string {
-        var dd = String(this.startTreatment.getDate()).padStart(2, '0');
-        var mm = String(this.startTreatment.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = this.startTreatment.getFullYear();
-        return `${dd}/${mm}/${yyyy}`
+    get treatment():Treatment {
+        return this._treatment
     }
 }

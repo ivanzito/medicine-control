@@ -12,23 +12,23 @@ import { Login } from '../model/login';
 })
 export class LoginComponent implements OnInit {
 
-  loginService:LoginService;
+
+  login = new Login('', '');
 
   formLogin = this.fb.group({
-    name: ['', Validators.required],
-    pwd: ['', Validators.required]
+    name: [this.login.user, Validators.pattern('[A-Za-z]+')],
+    pwd: [this.login.pwd, Validators.min(6)]
   })
 
   onSubmit = () => {
-    this.loginService.doLogin(new Login(this.formLogin.value.name, this.formLogin.value.pwd))
-      .subscribe();
+    this.loginService.doLogin(this.formLogin.value).subscribe();
   }
 
-  constructor(private fb: FormBuilder, loginService: LoginService) {
-    this.loginService = loginService
-   }
+  constructor(private fb: FormBuilder, private loginService: LoginService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
+  get name() { return this.formLogin.get('name'); }
+  get pwd() { return this.formLogin.get('pwd'); }
 
 }
